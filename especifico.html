@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pokedex - Detalhes</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./src/styles/main.css" />
+    <link rel="stylesheet" href="./src/styles/especifico.css" />
+  </head>
+  <body>
+    <div id="detailsScreen" class="details-screen full-page">
+      <a id="backButton" href="./index.html" class="close-btn">&lt;</a>
+
+      <div class="details-header">
+        <h1 id="detailsName"></h1>
+        <span id="detailsNumber"></span>
+
+        <div id="detailsTypes" class="types-container"></div>
+
+        <img id="detailsImage" src="" alt="Pokémon Image" />
+      </div>
+
+      <div class="details-content-card">
+        <div class="tabs-nav">
+          <span class="tab-item active" data-tab="about">About</span>
+          <span class="tab-item" data-tab="stats">Base Stats</span>
+          <span class="tab-item" data-tab="evolution">Evolution</span>
+          <span class="tab-item" data-tab="moves">Moves</span>
+        </div>
+
+        <div id="tab-about" class="tab-content active">
+          <h3 class="section-title">About</h3>
+          <div class="stat-row">
+            <span>Species</span><span id="detailsSpecies"></span>
+          </div>
+          <div class="stat-row">
+            <span>Height</span><span id="detailsHeight"></span>
+          </div>
+          <div class="stat-row">
+            <span>Weight</span><span id="detailsWeight"></span>
+          </div>
+          <div class="stat-row">
+            <span>Abilities</span><span id="detailsAbilities"></span>
+          </div>
+
+          <h3 class="section-title">Breeding</h3>
+          <div class="stat-row">
+            <span>Gender</span>
+            <span>
+              <span id="detailsGenderMale" class="gender-male"></span>
+              <span id="detailsGenderFemale" class="gender-female"></span>
+            </span>
+          </div>
+          <div class="stat-row">
+            <span>Egg Groups</span><span id="detailsEggGroups"></span>
+          </div>
+          <div class="stat-row">
+            <span>Egg Cycle</span><span id="detailsEggCycle"></span>
+          </div>
+        </div>
+
+        <div id="tab-stats" class="tab-content">
+          <p>Estatísticas virão aqui.</p>
+        </div>
+        <div id="tab-evolution" class="tab-content">
+          <p>Evoluções virão aqui.</p>
+        </div>
+        <div id="tab-moves" class="tab-content">
+          <p>Movimentos virão aqui.</p>
+        </div>
+      </div>
+    </div>
+    <script src="./src/scripts/pokemonModel.js"></script>
+    <script src="./src/scripts/pokeAPI.js"></script>
+    <script src="./src/scripts/detailsEngine.js"></script>
+  </body>
+</html>

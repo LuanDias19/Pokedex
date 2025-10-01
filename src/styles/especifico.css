@@ -1,0 +1,241 @@
+/* --- VARIAVEL DE COR PRINCIPAL --- */
+/* Esta variável será definida pelo JavaScript (detailsEngine.js) com a cor do tipo principal do Pokémon */
+.details-screen {
+  --main-color: #6c79db; /* Fallback (cor padrão, se o JS falhar) */
+}
+
+/* --- TELA DE DETALHES GERAL (Cor de Fundo Dinâmica) --- */
+
+.details-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow: hidden; /* Garante que a rolagem seja apenas no card branco */
+  /* A cor de fundo será a cor do tipo do Pokémon (ex: #7AC74C para Grass) */
+  background-color: var(--main-color);
+}
+
+/* Botão/Link de Voltar */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #fff;
+  cursor: pointer;
+  z-index: 1001;
+  /* Para o link de volta */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* --- HEADER (Parte Superior Azul/Verde/Cor do Tipo) --- */
+.details-header {
+  color: white;
+  padding-top: 40px;
+  position: relative;
+  z-index: 1;
+  height: 45%; /* Define a altura para a seção colorida */
+}
+
+#detailsName {
+  font-size: 36px;
+  margin-bottom: 5px;
+  text-transform: capitalize;
+  text-align: left;
+  margin-left: 20px;
+  font-weight: 700;
+}
+
+#detailsNumber {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  font-size: 20px;
+  opacity: 0.8;
+}
+
+/* Tipos (Badges) */
+.types-container {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0 20px 20px;
+  justify-content: flex-start;
+}
+
+.types-container .type {
+  padding: 3px 10px;
+  border-radius: 20px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.9;
+  /* O background-color é injetado pelo JS, o filtro é mantido para consistência */
+  background-color: rgba(255, 255, 255, 0.3);
+  filter: brightness(1.1);
+}
+
+/* Imagem do Pokémon */
+#detailsImage {
+  width: 150px;
+  height: 150px;
+  /* Ajusta a posição para que a imagem "saia" um pouco do card branco */
+  position: absolute;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%); /* Centraliza a imagem */
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+/* Efeito sutil para desktop */
+@media screen and (min-width: 992px) {
+  #detailsImage {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* --- CONTEÚDO PRINCIPAL (Cartão Branco) --- */
+.details-content-card {
+  background-color: white;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%; /* Define a altura do cartão branco */
+  overflow-y: auto; /* Permite rolagem dentro do cartão */
+  box-sizing: border-box;
+}
+
+/* --- NAVEGAÇÃO DAS ABAS --- */
+.tabs-nav {
+  display: flex;
+  justify-content: space-around;
+  /* Remove a borda inferior aqui, usaremos o underline dinâmico */
+  margin-bottom: 20px;
+}
+
+.tab-item {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #666;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+#backButton {
+  padding: 2px;
+  border: 2px solid white;
+  border-radius: 20px;
+}
+
+/* Estilo para a aba ativa */
+.tab-item.active {
+  color: var(--main-color); /* Cor do texto da aba ativa é dinâmica */
+}
+
+/* Underline dinâmico (a linha de baixo) */
+.tab-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 15%;
+  width: 70%;
+  height: 2px;
+  background-color: var(--main-color); /* Cor do underline é dinâmica */
+}
+
+/* --- CONTEÚDO DAS ABAS (About, Stats, etc.) --- */
+.tab-content {
+  display: none;
+  padding: 10px 0;
+  color: #333;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Título das Seções (About, Breeding) */
+.section-title {
+  color: var(--main-color); /* Cor do título é dinâmica */
+  font-size: 1rem;
+  margin: 15px 0 10px 0;
+  font-weight: 500;
+}
+
+/* Linhas de Stats (Espécie, Altura, Peso, etc.) */
+.stat-row {
+  display: grid;
+  grid-template-columns: 100px 1fr; /* Coluna do label (Species) tem 100px */
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  line-height: 1.2;
+}
+
+.stat-row span:first-child {
+  color: #999; /* Cor cinza para o label (Species) */
+  font-weight: 500;
+}
+
+/* Cores dos Gêneros */
+.gender-male {
+  color: #3c69d3; /* Azul para masculino */
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.gender-female {
+  color: #eb489c; /* Rosa para feminino */
+  font-weight: bold;
+}
+
+/* --- ESTILOS DA ABA EVOLUTION --- */
+
+.evolution-step {
+  padding: 10px 0;
+}
+
+.evolution-names {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.arrow {
+  font-weight: normal;
+  color: var(--main-color);
+}
+
+.evo-from.current-poke,
+.evo-to.current-poke {
+  color: var(--main-color);
+}
+
+.evolution-requirement {
+  font-size: 0.85rem;
+  color: #999;
+  margin-top: 5px;
+  font-style: italic;
+}
+
+#tab-evolution hr {
+  border: 0;
+  border-top: 1px solid #eee;
+  margin: 10px 0;
+}
